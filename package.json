@@ -4,14 +4,14 @@
   "description": "Repo for PressStart Software",
   "main": "index.js",
   "devDependencies": {
-    "@types/jquery": "^3.5.16"
+    "@types/jquery": "^3.5.22"
   },
-  "author": "",
+  "author": "Jashakan",
   "license": "ISC",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.2.1",
-    "@popperjs/core": "^2.11.6",
-    "bootstrap": "^5.2.3",
-    "jquery": "^3.6.3"
+    "@fortawesome/fontawesome-free": "^6.4.2",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.2",
+    "jquery": "^3.7.1"
   }
 }
