@@ -3,8 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Purchase Games Page</title>
+
+ <link rel="stylesheet" href="content/styles.css">
+ 
 </head>
 <body>
+    <h1><b>Buy Page</b></h1>
+    <form>
+        <div class="form-group">
+          <label for="gametitle">Game Title:</label>
+          <input type="text" class="form-control" id="gametitle" placeholder="Enter Title">
+         
+        </div>
 
+  
+
+     <div class="form-group">
+        <label for="platform">Platform:</label>
+        <input type="text" class="form-control" id="platform" placeholder="Enter Platform">
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="text" class="form-control" id="price" placeholder="Enter Price">
+      </div>
+
+      <div class="form-group">
+      <input type="radio" id="perfect" name="ConditionSelect" value="Perfect">
+      <label for="perfect">Perfect Condition</label><br>
+      <input type="radio" id="good" name="ConditionSelect" value="Good">
+      <label for="css">Good Condition</label><br>
+      <input type="radio" id="javascript" name="ConditionSelect" value="JavaScript">
+      <label for="javascript">Okay Condition</label>
+    </div>
+
+        <button type="submit" class="btn btn-primary">Process</button>
+      </form>
+
+      <button  id='market' class='btn btn-primary' style='float: right ;'>Online Market</button>
+      <script src="scripts/app.js"></script>
 </body>
 </html>
