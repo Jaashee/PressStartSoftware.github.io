@@ -1,9 +1,61 @@
-h1 {
-    text-align: center;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-b {
-    text-align: center;
+
+.pressstart{
+    width: 70px;
 }
-form {
-    text-align: center;
+
+.sidebar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 100vh;
+    background: #051e26;
+    padding: 0.4rem 0.8rem;
+    transition: all 0.5s ease;
 }
+
+.sidebar.active ~ .main-content {
+    left: 250px;
+    width: calc(100% - 250px);
+}
+
+.sidebar.active{
+    width: 250px;
+}
+
+.sidebar #btn{
+    position: absolute;
+    top: 0.4rem;
+    left: 50%;
+    font-size: 1.5rem;
+    line-height: 50px;
+    transform: translateX(-50%);
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.sidebar.active #btn{
+    left: 90%;
+}
+
+.sidebar.top.logo{
+    color: #ffffff;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.sidebar.active.top.logo{
+    opacity: 1;
+    pointer-events: inherit;
+}
+
