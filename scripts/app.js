@@ -8,5 +8,11 @@
         sidebar.classList.toggle("active");
     };
 
+    $(document).ready(function() {
+        $('#btn').click(function() {
+            $('.pressstart').toggleClass('opened');
+        });
+    });
+
 
 })();

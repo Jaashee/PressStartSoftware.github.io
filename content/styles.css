@@ -6,7 +6,19 @@
 }
 
 .pressstart{
-    width: 70px;
+    width: 60px;
+    margin-top: 30px;
+    order: 2; /* this will place it to the right of the hamburger */
+    /* This will allow for a smooth transition effect */
+    transition: transform 0.5s ease;
+
+    /* Starting position (when menu is closed) */
+    transform: translateX(0);
+}
+
+.pressstart.opened {
+    /* Adjust the value to move it further/closer as per your design */
+    transform: translateX(50px);
 }
 
 .sidebar{
@@ -15,10 +27,12 @@
     left: 0;
     width: 80px;
     height: 100vh;
-    background: #051e26;
+    background: #15181a;
     padding: 0.4rem 0.8rem;
     transition: all 0.5s ease;
+    display: flex;
 }
+
 
 .sidebar.active ~ .main-content {
     left: 250px;
@@ -38,6 +52,7 @@
     transform: translateX(-50%);
     color: #ffffff;
     cursor: pointer;
+
 }
 
 .sidebar.active #btn{
@@ -56,6 +71,89 @@
 
 .sidebar.active.top.logo{
     opacity: 1;
-    pointer-events: inherit;
 }
 
+.top.logo i{
+    font-size: 2rem;
+    margin: 5px;
+}
+
+.sidebar ul li{
+    position: relative;
+    list-style: none;
+    height: 50px;
+    width: 100%;
+    margin: 0.8rem auto;
+    line-height: 50px;
+}
+
+.sidebar ul li a{
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.5s ease;
+    border-radius: 12px;
+
+}
+
+.sidebar ul li a:hover{
+    color: #ffffff;
+    background: #d7102e;
+    padding-left: 15px;
+    padding-right: 10px;
+}
+
+.sidebar ul li a i {
+    min-width: 50px;
+    text-align: center;
+    height: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    transform: translateX(-50%);
+}
+
+.sidebar .nav-item {
+    opacity: 0;
+}
+
+.sidebar.active .nav-item {
+    opacity: 1;
+}
+
+.sidebar .nav-item .tooltip {
+    position: absolute;
+    left: 125px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.2);
+    border-radius: 0.6rem;
+    padding: 0.4rem 1.2rem;
+    line-height: 1.8rem;
+    z-index: 20;
+    opacity: 0;
+}
+
+.sidebar ul li:hover .tooltip{
+    opacity: 1;
+}
+
+.sidebar.active ul li .tooltip {
+    display: none;
+}
+
+.main-content{
+    position: relative;
+    background-color: #eee;
+    min-height: 100vh;
+    top: 0;
+    left: 80px;
+    transition: all 0.5s ease;
+    width: calc(100% - 80px);
+    padding: 1rem;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
