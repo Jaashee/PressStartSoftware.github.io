@@ -1,4 +1,4 @@
-let marketButton =document.getElementById('market');
+/*let marketButton =document.getElementById('market');
 let market = 'https://www.pricecharting.com/category/video-games';
 
 marketButton.addEventListener('click', () =>{
@@ -16,23 +16,21 @@ var express = require('express'),
 var connect = "postgres://pressstart_admin:12345@localhost/PressStart_db"
 
 
-});
+});*/
 
 (function () {
 
-    let btn = document.querySelector('#btn');
+    document.addEventListener("DOMContentLoaded", function() {
+        var btn = document.querySelector('#btn');
+        var sidebar = document.querySelector('.sidebar');
+        var pressstart = document.querySelector('.pressstart');
 
-    let sidebar = document.querySelector('.sidebar');
-
-    btn.onclick = function () {
-        sidebar.classList.toggle("active");
-    };
-
-    $(document).ready(function() {
-        $('#btn').click(function() {
-            $('.pressstart').toggleClass('opened');
+        btn.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+            pressstart.classList.toggle('opened');
         });
     });
+
 
 
 })();

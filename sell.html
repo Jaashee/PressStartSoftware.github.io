@@ -8,7 +8,7 @@
     <title>PressStart - Dashboard</title>
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="./content/styles.css" />
+    <link rel="stylesheet" href="./content/styles.css"/>
 
 </head>
 <body>
@@ -16,15 +16,10 @@
 <div class="sidebar">
     <div class="top">
         <div class="logo">
-            <i class="fa-solid fa-gamepad"></i>
-            <span>Press Start</span>
         </div>
         <i class="fa-solid fa-bars" id="btn"></i>
         <div class="pressstart">
             <img src="./content/pressstart.webp" alt="name" class="pressstart">
-            <div>
-                <p class="bold"> PressStart</p>
-            </div>
         </div>
         <ul>
             <li>
@@ -63,7 +58,7 @@
                 <span class="tooltip">Repairs</span>
             </li>
             <li>
-                <a href="#">
+                <a href="login.html">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <span class="nav-item">Logout</span>
                 </a>
@@ -77,34 +72,35 @@
     <div class="container">
         <h1>Sell/Returns Page</h1>
     </div>
-
+    <div class="form-styled">
     <form>
         <div class="form-group">
-          <label for="gametitle">Game ID:</label>
-          <input type="text" class="form-control" id="gametitle" placeholder="Enter Title">
-    
-        </div>
-    
-    
-      <div class="form-group">
-        <label for="price">Price:</label>
-        <input type="text" class="form-control" id="price" placeholder="Enter Price">
-      </div>
-    <!--If its sell then the transaction type is deposit, and withdrawl for return -->
-      <div class="form-group">
-      <input type="radio" id="sell" name="TransactionSelect" value="Sell">
-      <label for="perfect">Sell</label><br>
-      <input type="radio" id="return" name="TransactionSelect" value="Return">
-      <label for="css">Return</label><br>
-      
-    </div>
-    
-        <button type="submit" class="btn btn-primary">Process</button>
-      </form>
-    
-      <button  id='market' class='btn btn-primary' style='float: right ;'>Online Market</button>
-</div>
+            <label for="gametitle">Game ID:</label>
+            <input type="text" class="form-control" id="gametitle" placeholder="Enter Title">
 
+        </div>
+
+
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="text" class="form-control" id="price" placeholder="Enter Price">
+        </div>
+        <!--If its sell then the transaction type is deposit, and withdrawl for return -->
+        <div class="form-group">
+            <input type="radio" id="sell" name="TransactionSelect" value="Sell">
+            <label for="perfect">Sell</label><br>
+            <input type="radio" id="return" name="TransactionSelect" value="Return">
+            <label for="css">Return</label><br>
+
+        </div>
+
+        <div class="form-group button-group"> <!-- Add this div to group the buttons -->
+            <button type="submit" class="btn btn-primary">Process</button>
+            <button id='market' class='btn btn-primary' style='margin-left: 10px;'>Online Market</button>
+        </div>
+    </form>
+</div>
+</div>
 <!-- Scripting Section -->
 <script src="./node_modules/jquery/dist/jquery.min.js"></script>
 <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

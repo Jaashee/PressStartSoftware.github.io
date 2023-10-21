@@ -2,29 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <title>PressStart - Dashboard</title>
-    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="./content/styles.css" />
+    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="./content/styles.css" rel="stylesheet"/>
 
 </head>
 <body>
-
 <div class="sidebar">
     <div class="top">
         <div class="logo">
-            <i class="fa-solid fa-gamepad"></i>
-            <span>Press Start</span>
         </div>
         <i class="fa-solid fa-bars" id="btn"></i>
         <div class="pressstart">
-            <img src="./content/pressstart.webp" alt="name" class="pressstart">
-            <div>
-                <p class="bold"> PressStart</p>
-            </div>
+            <img alt="name" class="pressstart" src="./content/pressstart.webp">
         </div>
         <ul>
             <li>
@@ -63,7 +57,7 @@
                 <span class="tooltip">Repairs</span>
             </li>
             <li>
-                <a href="#">
+                <a href="login.html">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <span class="nav-item">Logout</span>
                 </a>
@@ -75,41 +69,40 @@
 
 <div class="main-content">
     <div class="container">
-        <h1>Buy Page</h1>
+        <h1>Buy Page (Temp page)</h1>
     </div>
 </div>
 <form>
     <div class="form-group">
-      <label for="gametitle">Game Title:</label>
-      <input type="text" class="form-control" id="gametitle" placeholder="Enter Title">
+        <label for="gametitle">Game Title:</label>
+        <input class="form-control" id="gametitle" placeholder="Enter Title" type="text">
 
     </div>
 
 
+    <div class="form-group">
+        <label for="platform">Platform:</label>
+        <input class="form-control" id="platform" placeholder="Enter Platform" type="text">
+    </div>
 
- <div class="form-group">
-    <label for="platform">Platform:</label>
-    <input type="text" class="form-control" id="platform" placeholder="Enter Platform">
-  </div>
+    <div class="form-group">
+        <label for="price">Price:</label>
+        <input class="form-control" id="price" placeholder="Enter Price" type="text">
+    </div>
 
-  <div class="form-group">
-    <label for="price">Price:</label>
-    <input type="text" class="form-control" id="price" placeholder="Enter Price">
-  </div>
+    <div class="form-group">
+        <input id="perfect" name="ConditionSelect" type="radio" value="Perfect">
+        <label for="perfect">Perfect Condition</label><br>
+        <input id="good" name="ConditionSelect" type="radio" value="Good">
+        <label for="css">Good Condition</label><br>
+        <input id="javascript" name="ConditionSelect" type="radio" value="JavaScript">
+        <label for="javascript">Okay Condition</label>
+    </div>
 
-  <div class="form-group">
-  <input type="radio" id="perfect" name="ConditionSelect" value="Perfect">
-  <label for="perfect">Perfect Condition</label><br>
-  <input type="radio" id="good" name="ConditionSelect" value="Good">
-  <label for="css">Good Condition</label><br>
-  <input type="radio" id="javascript" name="ConditionSelect" value="JavaScript">
-  <label for="javascript">Okay Condition</label>
-</div>
+    <button class="btn btn-primary" type="submit">Process</button>
+</form>
 
-    <button type="submit" class="btn btn-primary">Process</button>
-  </form>
-
-  <button  id='market' class='btn btn-primary' style='float: right ;'>Online Market</button>
+<button class='btn btn-primary' id='market' style='float: right ;'>Online Market</button>
 
 <!-- Scripting Section -->
 <script src="./node_modules/jquery/dist/jquery.min.js"></script>
