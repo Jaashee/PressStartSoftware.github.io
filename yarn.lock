@@ -1040,6 +1040,11 @@
     "filelist" "^1.0.4"
     "minimatch" "^3.1.2"
 
+"jqeury@^0.0.1-security":
+  "integrity" "sha512-r5iGV3rjYwn27R4PjOd2/AI7kVpKmXA2zwXqH/TtLu1QustWvuR7PEfOvUrA957vO9im7/GvRx1FvkKO5OcgIA=="
+  "resolved" "https://registry.npmjs.org/jqeury/-/jqeury-0.0.1-security.tgz"
+  "version" "0.0.1-security"
+
 "jquery@^3.7.1":
   "integrity" "sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg=="
   "resolved" "https://registry.npmjs.org/jquery/-/jquery-3.7.1.tgz"

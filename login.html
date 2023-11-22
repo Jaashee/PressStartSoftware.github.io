@@ -1,25 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PressStart - Dashboard</title>
-    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="./content/styles.css"/>
+    <title>Employee Login page</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
 
+        b {
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+        }
+    </style>
+    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="./content/styles.css" rel="stylesheet"/>
 </head>
 <body>
 
 <div class="sidebar">
     <div class="top">
         <div class="logo">
+            <i class="fa-solid fa-gamepad"></i>
+            <span>Press Start</span>
         </div>
         <i class="fa-solid fa-bars" id="btn"></i>
         <div class="pressstart">
-            <img src="./content/pressstart.webp" alt="name" class="pressstart">
+            <img alt="name" class="pressstart" src="./content/pressstart.webp">
+            <div>
+                <p class="bold"> PressStart</p>
+            </div>
         </div>
         <ul>
             <li>
@@ -70,40 +84,29 @@
 
 <div class="main-content">
     <div class="container">
-        <h1>Sell/Returns Page</h1>
+        <h1>Employee Login</h1>
+        
+        <form  action="/" method="">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Employee Id</label>
+                <input aria-describedby="emailHelp" name="employeeid" class="form-control" id="employeeid" placeholder="Enter Employee ID"
+                       type="text">
+
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input class="form-control" id="password" name="password" placeholder="Password" type="password">
+            </div>
+
+            <button class="btn btn-primary" type="submit">Login</button>
+        </form>
     </div>
-    <div class="form-styled">
-    <form>
-        <div class="form-group">
-            <label for="gametitle">Game ID:</label>
-            <input type="text" class="form-control" id="gametitle" placeholder="Enter Title">
-
-        </div>
-
-
-        <div class="form-group">
-            <label for="price">Price:</label>
-            <input type="text" class="form-control" id="price" placeholder="Enter Price">
-        </div>
-        <!--If its sell then the transaction type is deposit, and withdrawl for return -->
-        <div class="form-group">
-            <input type="radio" id="sell" name="TransactionSelect" value="Sell">
-            <label for="perfect">Sell</label><br>
-            <input type="radio" id="return" name="TransactionSelect" value="Return">
-            <label for="css">Return</label><br>
-
-        </div>
-
-        <div class="form-group button-group"> <!-- Add this div to group the buttons -->
-            <button type="submit" class="btn btn-primary">Process</button>
-            <button id='market' class='btn btn-primary' style='margin-left: 10px;'>Online Market</button>
-        </div>
-    </form>
 </div>
-</div>
+
 <!-- Scripting Section -->
 <script src="./node_modules/jquery/dist/jquery.min.js"></script>
 <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="./scripts/app.js"></script>
+<script src="./databasepg.js"></script>
 </body>
 </html>
