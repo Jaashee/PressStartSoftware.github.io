@@ -1,6 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
+<?php 
+require("./includes/constants.php");
+require("./includes/db.php");
+
+$email_address="";
+$error="";
+$message="";
+?>
     <meta charset="UTF-8">
     <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
           name="viewport">
@@ -37,6 +45,13 @@
                 <span class="tooltip">Inventory</span>
             </li>
             <li>
+                <a href="client.php">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="nav-item">Client</span>
+                </a>
+                <span class="tooltip">Client</span>
+            </li>
+            <li>
                 <a href="buy.html">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span class="nav-item">Buy</span>
@@ -69,9 +84,54 @@
 </div>
 
 <div class="main-content">
-    <div class="container">
-        <h1>Client Page (Temp page)</h1>
+    <div style="text-align:center" class="clientpage">
+        <h1>Client Page</h1>
 
+      <?php 
+     if($_SERVER["REQUEST_METHOD"]=="POST"){
+        $email_address =trim($_POST['inputEmail']);
+     
+
+     if(!isset($email_address)|| $email_address ="")
+    {
+    $error.="You must enter email address</br>";
+    } 
+    elseif(!filter_var($email_address,FILTER_VALIDATE_EMAIL)){
+    $error.=$email_address."is not valid</br>";
+    $email_address="";   
+    }
+    elseif(user_exists($email_address)){
+    $error.= "This email(".$email_address.") already exists</br>";
+        
+    }
+    if($error=="")
+    {
+
+    insert_user($email_address);
+    $_SESSION['message'] = "Register successful for a new client";
+    }
+    else{
+        $error.="</br>Please try again!!!";
+        $_SESSION['message'] = $error;  
+      }
+      
+        
+     }
+
+
+     $form_client = array(
+        array(
+        "type"=>"text",
+        "name"=>"inputFName",
+        "value"=>"",
+        "label"=>"First Name"
+
+        )
+    );
+
+    display_form($form_client);
+      ?>
+        
     </div>
 </div>
 
