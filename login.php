@@ -1,91 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <?php
+<?php include './includes/header.php'; ?> 
+<?php
 require("./includes/constants.php");
 require("./includes/db.php");
 $message = "";
 ?>
-    <meta charset="UTF-8">
-    <title>Employee Login page</title>
-    <style>
-        h1 {
-            text-align: center;
-        }
 
-        b {
-            text-align: center;
-        }
-
-        form {
-            text-align: center;
-        }
-    </style>
-    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="./content/styles.css" rel="stylesheet"/>
-</head>
-<body>
-
-<div class="sidebar">
-    <div class="top">
-        <div class="logo">
-            <i class="fa-solid fa-gamepad"></i>
-            <span>Press Start</span>
-        </div>
-        <i class="fa-solid fa-bars" id="btn"></i>
-        <div class="pressstart">
-            <img alt="name" class="pressstart" src="./content/pressstart.webp">
-            <div>
-                <p class="bold"> PressStart</p>
-            </div>
-        </div>
-        <ul>
-            <li>
-                <a href="index.html">
-                    <i class="fa-brands fa-dashcube"></i>
-                    <span class="nav-item">Dashboard</span>
-                </a>
-                <span class="tooltip">Dashboard</span>
-            </li>
-            <li>
-                <a href="inventory.html">
-                    <i class="fa-solid fa-boxes-stacked"></i>
-                    <span class="nav-item">Inventory</span>
-                </a>
-                <span class="tooltip">Inventory</span>
-            </li>
-            <li>
-                <a href="buy.html">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <span class="nav-item">Buy</span>
-                </a>
-                <span class="tooltip">Buy</span>
-            </li>
-            <li>
-                <a href="sell.html">
-                    <i class="fa-solid fa-money-bill"></i>
-                    <span class="nav-item">Sell/Returns</span>
-                </a>
-                <span class="tooltip">Sell/Returns</span>
-            </li>
-            <li>
-                <a href="repair.html">
-                    <i class="fa-solid fa-screwdriver-wrench"></i>
-                    <span class="nav-item">Repairs</span>
-                </a>
-                <span class="tooltip">Repairs</span>
-            </li>
-            <li>
-                <a href="login.html">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    <span class="nav-item">Logout</span>
-                </a>
-                <span class="tooltip">Logout</span>
-            </li>
-        </ul>
-    </div>
-</div>
 <?php
 if($_SERVER['REQUEST_METHOD']=='POST'){
   
@@ -138,10 +57,4 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     </div>
 </div>
 
-<!-- Scripting Section -->
-<script src="./node_modules/jquery/dist/jquery.min.js"></script>
-<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="./scripts/app.js"></script>
-<script src="./databasepg.js"></script>
-</body>
-</html>
+<?php include './includes/footer.php'; ?>
