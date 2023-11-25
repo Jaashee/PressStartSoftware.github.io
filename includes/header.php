@@ -1,3 +1,6 @@
+<?php
+header('Content-Type: text/html; charset=utf-8');
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,7 +12,6 @@
     <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="./content/styles.css" rel="stylesheet"/>
-
 </head>
 <body>
 <div class="sidebar">
@@ -22,42 +24,42 @@
         </div>
         <ul>
             <li>
-                <a href="index.html">
+                <a href="index.php">
                     <i class="fa-brands fa-dashcube"></i>
                     <span class="nav-item">Dashboard</span>
                 </a>
                 <span class="tooltip">Dashboard</span>
             </li>
             <li>
-                <a href="inventory.html">
+                <a href="inventory.php">
                     <i class="fa-solid fa-boxes-stacked"></i>
                     <span class="nav-item">Inventory</span>
                 </a>
                 <span class="tooltip">Inventory</span>
             </li>
             <li>
-                <a href="buy.html">
+                <a href="buy.php">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span class="nav-item">Buy</span>
                 </a>
                 <span class="tooltip">Buy</span>
             </li>
             <li>
-                <a href="sell.html">
+                <a href="sell.php">
                     <i class="fa-solid fa-money-bill"></i>
                     <span class="nav-item">Sell/Returns</span>
                 </a>
                 <span class="tooltip">Sell/Returns</span>
             </li>
             <li>
-                <a href="repair.html">
+                <a href="repair.php">
                     <i class="fa-solid fa-screwdriver-wrench"></i>
                     <span class="nav-item">Repairs</span>
                 </a>
                 <span class="tooltip">Repairs</span>
             </li>
             <li>
-                <a href="login.html">
+                <a href="login.php">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <span class="nav-item">Logout</span>
                 </a>
@@ -66,47 +68,3 @@
         </ul>
     </div>
 </div>
-
-<div class="main-content">
-    <div class="container">
-        <h1>Buy Page (Temp page)</h1>
-    </div>
-</div>
-<form>
-    <div class="form-group">
-        <label for="gametitle">Game Title:</label>
-        <input class="form-control" id="gametitle" placeholder="Enter Title" type="text">
-
-    </div>
-
-
-    <div class="form-group">
-        <label for="platform">Platform:</label>
-        <input class="form-control" id="platform" placeholder="Enter Platform" type="text">
-    </div>
-
-    <div class="form-group">
-        <label for="price">Price:</label>
-        <input class="form-control" id="price" placeholder="Enter Price" type="text">
-    </div>
-
-    <div class="form-group">
-        <input id="perfect" name="ConditionSelect" type="radio" value="Perfect">
-        <label for="perfect">Perfect Condition</label><br>
-        <input id="good" name="ConditionSelect" type="radio" value="Good">
-        <label for="css">Good Condition</label><br>
-        <input id="javascript" name="ConditionSelect" type="radio" value="JavaScript">
-        <label for="javascript">Okay Condition</label>
-    </div>
-
-    <button class="btn btn-primary" type="submit">Process</button>
-</form>
-
-<button class='btn btn-primary' id='market' style='float: right ;'>Online Market</button>
-
-<!-- Scripting Section -->
-<script src="./node_modules/jquery/dist/jquery.min.js"></script>
-<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="./scripts/app.js"></script>
-</body>
-</html>
