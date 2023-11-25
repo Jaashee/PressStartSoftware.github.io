@@ -89,25 +89,21 @@ $message="";
 
       <?php 
      if($_SERVER["REQUEST_METHOD"]=="POST"){
-        $email_address =trim($_POST['inputEmail']);
+        $email_address =trim($_POST['input_email']);
      
 
-     if(!isset($email_address)|| $email_address ="")
-    {
-    $error.="You must enter email address</br>";
-    } 
-    elseif(!filter_var($email_address,FILTER_VALIDATE_EMAIL)){
-    $error.=$email_address."is not valid</br>";
-    $email_address="";   
-    }
-    elseif(user_exists($email_address)){
-    $error.= "This email(".$email_address.") already exists</br>";
-        
-    }
+     
+    
+
     if($error=="")
     {
+    $conn =  db_connect();
+    $sql = "insert into client (client_email)";
+    $sql .= "values('$email_address')";
+    $result = pg_query($conn,$sql);
+    
 
-    insert_user($email_address);
+    insert_client($email_address);
     $_SESSION['message'] = "Register successful for a new client";
     }
     else{
@@ -117,21 +113,15 @@ $message="";
       
         
      }
-
-
-     $form_client = array(
-        array(
-        "type"=>"text",
-        "name"=>"inputFName",
-        "value"=>"",
-        "label"=>"First Name"
-
-        )
-    );
-
-    display_form($form_client);
       ?>
-        
+        <h2 id = "error"> <?php echo $error; ?></h2>
+        <h2 id = "message"> <?php echo $message; ?></h2>
+        <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
+        <h1 class="h3 mb-3 font-weight-normal">Add a new client</h1>
+    <label for="input_email" class="sr-only">Client Email</label>
+    <input type="email" id="inputEmail" name="input_email" class="form-control" placeholder="Client Email" required autofocus>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Register Client</button>
+    </form>
     </div>
 </div>
 
