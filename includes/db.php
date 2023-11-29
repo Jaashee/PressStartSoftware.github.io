@@ -14,13 +14,15 @@ function insert_client($email_address){
     }
     $stmt1 = pg_prepare($conn, 'employee_retrieve','SELECT * FROM employee WHERE employee_id = $1 ');
 
-    function email_exists($email_address){
-        
-        if(!empty($email_address)){
-            $return_val = false;
-
-            
+    
+    function  email_exist( $email ) {
+        $conn = db_connect();
+        $result = pg_execute( $conn, 'email_exist', array( $email ) );
+        if ( pg_num_rows( $result ) == 1 ) {
+          $user = pg_fetch_assoc( $result, 0 );
+          return $user;
+        } else {
+          return false;
         }
-     
-        }
+      }
 ?>

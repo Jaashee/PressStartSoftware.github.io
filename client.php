@@ -4,7 +4,7 @@ include "./includes/header.php";
 ?>
 
 <?php
-
+$message = "";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -19,9 +19,16 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$valid = true;
 	if (!filter_var($email_address, FILTER_VALIDATE_EMAIL)) {
 		$valid = false;
-		setMessage("Please enter a valid email address.");
+		$message = "Error email not formatted correctly";
 	}
+	$query = pg_query($conn,"SELECT * FROM  client WHERE client_email= '$email_address'");
+	if(pg_num_rows($query)>0)
+	{
+		$message = "Email id already use";
+	}
+	else{
 
+	
 	// If the form data is valid, insert the new salesperson user into the database
 	$sql = "INSERT INTO client (client_email)"; 
 	$sql .= "VALUES ('$email_address')";
@@ -29,24 +36,25 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if ($valid) {
 		if (pg_query($conn, $sql)) {
 			
-			redirect("client.php");
+			$message = "The client email was successfully registered!";
 		} else {
-		
+			
 		}
 	}
+}
 }
 ?>
 <div class="main-content">
     <div class="container">
         <h1><b>Client Page</b></h1>
+		<h2 id = "errors"> <?php echo $message; ?></h2>
         <?php
         display_form(
 	array(
 		array(
 			"type" => "email",
-			"name" => "client_email",
-      "for" => "client_email",	
-      "value" => $email_address,
+			"name" => "client_email",	
+            "value" => $email_address,
 			"label" => "Client Email"
 		),
 
