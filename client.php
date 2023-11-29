@@ -1,53 +1,65 @@
-<?php include './includes/header.php'; ?> 
-<?php 
-require("./includes/constants.php");
-require("./includes/db.php");
-
-$email_address="";
-$error="";
-$message="";
+<?php
+$title = "WEBD3201 Salespeople";
+include "./includes/header.php";
 ?>
 
+<?php
+
+
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+	$email_address = "";
+
+}
+else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	$email_address = trim($_POST['client_email']);
+
+
+	// Validate the form data
+	$valid = true;
+	if (!filter_var($email_address, FILTER_VALIDATE_EMAIL)) {
+		$valid = false;
+		setMessage("Please enter a valid email address.");
+	}
+
+	// If the form data is valid, insert the new salesperson user into the database
+	$sql = "INSERT INTO client (client_email)"; 
+	$sql .= "VALUES ('$email_address')";
+
+	if ($valid) {
+		if (pg_query($conn, $sql)) {
+			
+			redirect("client.php");
+		} else {
+		
+		}
+	}
+}
+?>
 <div class="main-content">
-    <div style="text-align:center" class="clientpage">
-        <h1>Client Page</h1>
+    <div class="container">
+        <h1><b>Client Page</b></h1>
+        <?php
+        display_form(
+	array(
+		array(
+			"type" => "email",
+			"name" => "client_email",
+      "for" => "client_email",	
+      "value" => $email_address,
+			"label" => "Client Email"
+		),
 
-      <?php 
-     if($_SERVER["REQUEST_METHOD"]=="POST"){
-        $email_address =trim($_POST['input_email']);
-     
-
-     
-    
-
-    if($error=="")
-    {
-    $conn =  db_connect();
-    $sql = "insert into client (client_email)";
-    $sql .= "values('$email_address')";
-    $result = pg_query($conn,$sql);
-    
-
-    insert_client($email_address);
-    $_SESSION['message'] = "Register successful for a new client";
-    }
-    else{
-        $error.="</br>Please try again!!!";
-        $_SESSION['message'] = $error;  
-      }
-      
-        
-     }
-      ?>
-        <h2 id = "error"> <?php echo $error; ?></h2>
-        <h2 id = "message"> <?php echo $message; ?></h2>
-        <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
-        <h1 class="h3 mb-3 font-weight-normal">Add a new client</h1>
-    <label for="input_email" class="sr-only">Client Email</label>
-    <input type="email" id="inputEmail" name="input_email" class="form-control" placeholder="Client Email" required autofocus>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Register Client</button>
-    </form>
+	)
+);
+  ?>    
     </div>
 </div>
 
-<?php include './includes/footer.php'; ?>
+
+
+
+
+<?php
+include "./includes/footer.php";
+?> 

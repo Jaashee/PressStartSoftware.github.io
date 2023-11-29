@@ -1,4 +1,7 @@
 <?php
+require( "functions.php" );
+require( "constants.php" );
+require( "db.php" );
 header('Content-Type: text/html; charset=utf-8');
 ?>
 <!doctype html>
@@ -36,6 +39,13 @@ header('Content-Type: text/html; charset=utf-8');
                     <span class="nav-item">Inventory</span>
                 </a>
                 <span class="tooltip">Inventory</span>
+            </li>
+            <li>
+                <a href="client.php">
+                  <i class="fa-solid fa-user"></i>
+                    <span class="nav-item">Client</span>
+                </a>
+                <span class="tooltip">Client</span>
             </li>
             <li>
                 <a href="buy.php">

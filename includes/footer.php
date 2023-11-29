@@ -1,5 +1,5 @@
 <?php
-footer('Content-Type: text/html; charset=utf-8');
+
 ?>
 <!-- Scripting Section -->
 <script src="./node_modules/jquery/dist/jquery.min.js"></script>
