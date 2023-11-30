@@ -19,12 +19,14 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$valid = true;
 	if (!filter_var($email_address, FILTER_VALIDATE_EMAIL)) {
 		$valid = false;
-		$message = "Error email not formatted correctly";
+		$message = "Client email must be formatted correctly";
 	}
+
 	$query = pg_query($conn,"SELECT * FROM  client WHERE client_email= '$email_address'");
 	if(pg_num_rows($query)>0)
 	{
 		$message = "Email id already use";
+		$valid = false;
 	}
 	else{
 

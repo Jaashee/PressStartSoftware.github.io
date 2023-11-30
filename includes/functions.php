@@ -21,7 +21,7 @@ function display_form($form_inputs)
 {
 	?>
 	<form class="form-signin" method="post" enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
-	<h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
+	
 	<input type="hidden" name="form2submission" value="yes" >
 	<?php
 	foreach($form_inputs as $input){	
@@ -32,7 +32,7 @@ function display_form($form_inputs)
 	}
 	?>
 	<br>
-	<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+	<button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
 	</form>
 <?php
 
