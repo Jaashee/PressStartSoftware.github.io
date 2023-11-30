@@ -57,7 +57,16 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <div class="main-content">
     <div class="container">
+        <div>
         <h1><b>Repair Status Page</b></h1>
+        <a href="repair.php">
+        <i class="fa-solid fa-arrow-left"></i>
+                    <span class="nav-item">Back to Repair Page</span>
+                    
+                   
+                </a>
+        </div>
+        
         <h2 id = "errors"> <?php echo $message; ?></h2>
 <?php
 

@@ -5,8 +5,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 	$email_address = "";
     $console = "";
     $price = "";
-    $repair_id = "";
-    $repair_status = "";
     $prodid = 0;
     $message = "";
     
@@ -17,8 +15,6 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $console = trim($_POST['console']);
     $price = trim($_POST['price']);
     $prodid = trim($_POST['productid']);
-    $repair_id = trim($_POST['repair_id']);
-    $repair_status = trim($_POST['repairstatus']);
     $query = pg_query($conn,"SELECT * FROM  employee WHERE employee_id= '$employee_id'");
     $query2 = pg_query($conn,"SELECT * FROM  product WHERE product_id= '$prodid'");
     
@@ -92,7 +88,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <div class="main-content">
     <div class="container">
-        <h1><b>Console Repair page</b></h1>
+        <h1><b>Console Repair Page</b></h1>
         <h2 id = "errors"> <?php echo $message; ?></h2>
 <?php
         display_form(
