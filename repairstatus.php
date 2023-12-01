@@ -9,32 +9,38 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$repair_id = trim($_POST['repair_id']);
     $repair_status = trim($_POST['repair_status']);
-    $query = pg_query($conn,"SELECT * FROM  repair WHERE repair_id= '$repair_id'");
     
-    
+    $message = "";
+
+   
+    $numlength = strlen((string)$repair_id);
+
 	//error checking
 	$valid = true;
-    if(!isset($repair_id)||trim($repair_id)==""){
-        $message ="Repair ID is required";
-        $repair_id = "";
+
+ 
+   
+     if(!is_numeric($repair_id)){
+        $message = "Repair ID is required";
         $valid = false;
+        
+    }
+    else{
+        if(!(pg_num_rows($query)>0)){
+            $query = pg_query($conn,"SELECT * FROM  repair WHERE repair_id= '$repair_id'");
+            $message = "Repair ID does not exist";
+            $valid = false;
+        
+            }
     }
     
-    if(!isset($repair_status)||trim($repair_status)==""){
-        $message ="Repair Status is required";
-        $repair_status = "";
-        $valid = false;
-    }
-    if(!($repair_status == "complete"|| $repair_status == "ongoing")){
+      if(!($repair_status == "complete"|| $repair_status == "ongoing")){
         $message ="Repair Status can only be 'complete' or 'ongoing'";
         $repair_status = "";
         $valid = false;
     }
-    if(!(pg_num_rows($query)>0))
-	{
-		$message = "Repair ID does not exist";
-        $valid = false;
-	}
+    
+   
 	
 
 

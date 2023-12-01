@@ -20,6 +20,7 @@ function dump($arg){
 function display_form($form_inputs)
 {
 	?>
+	<div>
 	<form class="form-signin" method="post" enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
 	
 	<input type="hidden" name="form2submission" value="yes" >
@@ -32,8 +33,11 @@ function display_form($form_inputs)
 	}
 	?>
 	<br>
-	<button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+	</div>
+	
+	
 	</form>
+	<button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
 <?php
 
 }

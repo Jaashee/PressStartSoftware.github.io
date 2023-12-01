@@ -15,8 +15,8 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $console = trim($_POST['console']);
     $price = trim($_POST['price']);
     $prodid = trim($_POST['productid']);
-    $query = pg_query($conn,"SELECT * FROM  employee WHERE employee_id= '$employee_id'");
-    $query2 = pg_query($conn,"SELECT * FROM  product WHERE product_id= '$prodid'");
+ 
+    
     
     
 	//error checking
@@ -25,11 +25,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$valid = false;
 		$message = "Client email not formatted correctly";
 	}
-    if(!isset($employee_id)||trim($employee_id)==""){
-        $message ="Employee ID is required";
-        $employee_id = "";
-        $valid = false;
-    }
+  
     if(!isset($price)||trim($price)==""){
         $message ="The price of repair is required";
         $price = "";
@@ -46,16 +42,29 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $valid = false;
         
         }
-    if(pg_num_rows($query2)>0)
-        {
-            $message = "Product ID entered already exists";
-            $valid = false;
+        else{
+            $query2 = pg_query($conn,"SELECT * FROM  product WHERE product_id= '$prodid'");
+            if(pg_num_rows($query2)>0)
+            {
+              
+                $message = "Product ID entered already exists";
+                $valid = false;
+            }
         }
+    if(!is_numeric($employee_id)){
+            $message = "Employee ID is required";
+            $valid = false;
+            
+        }
+   else{
+    $query = pg_query($conn,"SELECT * FROM  employee WHERE employee_id= '$employee_id'");
     if(!(pg_num_rows($query)>0))
 	{
+       
 		$message = "Employee ID does not exist";
         $valid = false;
 	}
+   }
 	
 
 	$date = date("Y-m-d");
@@ -88,6 +97,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <div class="main-content">
     <div class="container">
+        <div width="400" class="form-styled">
         <h1><b>Console Repair Page</b></h1>
         <h2 id = "errors"> <?php echo $message; ?></h2>
 <?php
@@ -126,9 +136,11 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ),
 	)
 );
+
 $ongoingqeury = "select * from repair WHERE repair_status= 'ongoing'";
 $ongoingresult = pg_query($conn,$ongoingqeury);
 ?>
+<div>
 <div>
     <a href="repairstatus.php">
                     <span class="nav-item">Change Repair Status</span>

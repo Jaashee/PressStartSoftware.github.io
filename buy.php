@@ -2,7 +2,7 @@
 
 <div class="main-content">
     <div class="container">
-        <h1>Buy Page (Temp page)</h1>
+        <h1>Buy Page</h1>
     </div>
 
 <form>
