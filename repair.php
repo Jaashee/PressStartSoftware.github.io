@@ -97,7 +97,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <div class="main-content">
     <div class="container">
-        <div width="400" class="form-styled">
+        <div width="400">
         <h1><b>Console Repair Page</b></h1>
         <h2 id = "errors"> <?php echo $message; ?></h2>
 <?php
@@ -140,17 +140,17 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $ongoingqeury = "select * from repair WHERE repair_status= 'ongoing'";
 $ongoingresult = pg_query($conn,$ongoingqeury);
 ?>
-<div>
-<div>
+
+
     <a href="repairstatus.php">
                     <span class="nav-item">Change Repair Status</span>
                     <i class="fa-solid fa-arrow-right"></i>
                    
                 </a>
                 
-</div>
 
-    </div>
+
+   
     <table class="table table-bordered text-center">
     <tr>
         <td>Repair ID</td>
