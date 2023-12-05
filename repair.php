@@ -183,8 +183,57 @@ if(! isset($_SESSION['employee_id']))
                     </a></div>
     
     </div>
-    
-    <?php include './includes/footer.php'; 
+    <style>
+        table,tr,th,td
+        {
+            border: 1px solid black;
+        }
+    </style>
+    <?php
+    if(isset($_POST['search']))
+    {
+        $valueToSearch = $_POST['valueToSearch'];
+        $query = "SELECT * FROM `repairs` where concat(`repair_id`, `employee_id`, `console`, `repair_date`, `repair_status`, `client_email`) LIKE '%".$valueToSearch."%'";
+        $search_result = filterTable($query);
+    }
+    else {
+        $query = "SELECT * FROM `repairs`";
+        $search_result = filterTable($query);
+    }
 
+    function filterTable($query)
+    {
+        $connect = mysqli_connect("localhost", "root", "", "PressStart_db");
+        $filter_Result = mysqli_query($connect, $query);
+        return $filter_Result;
+    }
+    ?>
+        <form action="repair.php" method="post">
+            <input type="text" name="valueToSearch" placeholder="Value to Search"><br><br>
+            <input type="submit" name="search" value="filter"><br><br>
+            <table>
+                <tr>
+                    <th>Repair ID</th>
+                    <th>Employee ID</th>
+                    <th>Console</th>
+                    <th>Repair Date</th>
+                    <th>Repair Status</th>
+                    <th>Client Email</th>
+                </tr>
+                <?php while($row = mysqli_fetch_array($search_result)):?>
+                    <tr>
+                        <td><?php echo $row['repair_id'];?></td>
+                        <td><?php echo $row['employee_id'];?></td>
+                        <td><?php echo $row['console'];?></td>
+                        <td><?php echo $row['repair_date'];?></td>
+                        <td><?php echo $row['repair_status'];?></td>
+                        <td><?php echo $row['client_email'];?></td>
+                    </tr>
+                <?php endwhile;?>
+            </table>
+        </form>
+
+    <?php include './includes/footer.php'; 
+ 
 
 ?>
