@@ -41,7 +41,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if($row['employee_id']===$employee_id && $row['password']===$password){
             $_SESSION['employee_id'] =  $row['employee_id'];
             $_SESSION['employee_name'] = $row['first_name'];
-            $_SESSION['manager'] = $row['is_manager'];
+            $_SESSION['typeemployee'] = $row['type'];
             header("Location: index.php");
            
            
