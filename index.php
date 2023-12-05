@@ -10,7 +10,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 	$first_name = "";
     $last_name = "";
 	$password = "";
-	$cpassword = "";
+	$confirmpassword = "";
+	$phonenumber = "";
+	$address = "";
+	$manaager = "";
+	$message = "";
 
 }
 else if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -18,7 +22,10 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$first_name = trim($_POST['first_name']);
 	$last_name = trim($_POST['last_name']);
 	$password = trim($_POST['password']);
-	$cpassword = trim($_POST['confirmpassword']);
+	$confirmpassword = trim($_POST['confirmpassword']);
+	$phonenumber = trim($_POST['phonenumber']);
+	$address = trim($_POST['address']);
+	$manager = trim($_POST['manager']);
 
 
 	// Validate the form data
@@ -28,7 +35,17 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$message = "Client email must be formatted correctly";
 	}
 
-	$query = pg_query($conn,"SELECT * FROM  client WHERE client_email= '$email_address'");
+	if(!isset($email_address)||trim($email_address)==""){
+		$errors.="Email is required"."<br/>";
+		$email_address = "";
+	
+	}
+	if(!isset($first_name)||trim($first_name)==""){
+		$errors.="Email is required"."<br/>";
+		$fname = "";
+	
+	}
+	$query = pg_query($conn,"SELECT * FROM  employee WHERE client_email= '$email_address'");
 	if(pg_num_rows($query)>0)
 	{
 		$message = "Email id already use";
@@ -57,6 +74,10 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h1>Employee Page</h1>
         <h1>Currently logged in: <?php echo $_SESSION['employee_name']; ?></h1>
 
+		<div>
+		<h2 id = "errors"> <?php echo $message; ?></h2>
+		</div>
+
         <form  method="post" enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
  <div class="form-group">
 	 <label for="first_name">First name:</label>
@@ -75,9 +96,24 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
  </div>
  <div class="form-group">
 	 <label for="confirmpassword">Confirm Password:</label>
-	 <input class="form-control" value="<?php $confirmpassword?>" name="confirmpassword" placeholder="Confirm your password" type="text">
+	 <input class="form-control" value="<?php $confirmpassword?>" name="confirmpassword" placeholder="Confirm password" type="text">
 
  </div>
+ <div class="form-group">
+	 <label for="phonenumber">Phone Number:</label>
+	 <input class="form-control" value="<?php $phonenumber?>" name="phonenumber" placeholder="Enter Phone Number" type="text">
+
+ </div>
+
+ <div class="form-group">
+	 <label for="address">Address:</label>
+	 <input class="form-control" value="<?php $address?>" name="address" placeholder="Enter address" type="text">
+
+ </div>
+ <div class="form-group">
+        <input name="manager" type="checkbox" value="manager">
+        <label for="perfect">Manager?</label><br>
+    </div>
 
  <button class="btn btn-primary" type="submit">Add Employee</button>
 </form>

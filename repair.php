@@ -136,8 +136,9 @@ if(! isset($_SESSION['employee_id']))
 
     <button class="btn btn-primary" type="submit">Save Repair</button>
 </form>
+</div>
  </div>
- <div></div>
+ 
     
     <?php
     $ongoingqeury = "select * from repair WHERE repair_status= 'ongoing'";
@@ -148,7 +149,9 @@ if(! isset($_SESSION['employee_id']))
                     
     
     
-       <div> <table class="table table-bordered text-center">
+       <div>
+        <h2>All ongoing repairs</h2>
+         <table class="table table-bordered text-center">
         <tr>
             <td>Repair ID</td>
             <td>Employee ID</td>
@@ -174,64 +177,21 @@ if(! isset($_SESSION['employee_id']))
         } 
        ?>
         
-    </table></div>
-        
-    <div>  <a href="repairstatus.php">
+    </table>
+</div>
+        <div>
+                <a href="repairstatus.php">
                         <span class="nav-item">Change Repair Status</span>
                         <i class="fa-solid fa-arrow-right"></i>
                        
-                    </a></div>
-    
-    </div>
-    <style>
-        table,tr,th,td
-        {
-            border: 1px solid black;
-        }
-    </style>
-    <?php
-    if(isset($_POST['search']))
-    {
-        $valueToSearch = $_POST['valueToSearch'];
-        $query = "SELECT * FROM `repairs` where concat(`repair_id`, `employee_id`, `console`, `repair_date`, `repair_status`, `client_email`) LIKE '%".$valueToSearch."%'";
-        $search_result = filterTable($query);
-    }
-    else {
-        $query = "SELECT * FROM `repairs`";
-        $search_result = filterTable($query);
-    }
-
-    function filterTable($query)
-    {
-        $connect = mysqli_connect("localhost", "root", "", "PressStart_db");
-        $filter_Result = mysqli_query($connect, $query);
-        return $filter_Result;
-    }
-    ?>
-        <form action="repair.php" method="post">
-            <input type="text" name="valueToSearch" placeholder="Value to Search"><br><br>
-            <input type="submit" name="search" value="filter"><br><br>
-            <table>
-                <tr>
-                    <th>Repair ID</th>
-                    <th>Employee ID</th>
-                    <th>Console</th>
-                    <th>Repair Date</th>
-                    <th>Repair Status</th>
-                    <th>Client Email</th>
-                </tr>
-                <?php while($row = mysqli_fetch_array($search_result)):?>
-                    <tr>
-                        <td><?php echo $row['repair_id'];?></td>
-                        <td><?php echo $row['employee_id'];?></td>
-                        <td><?php echo $row['console'];?></td>
-                        <td><?php echo $row['repair_date'];?></td>
-                        <td><?php echo $row['repair_status'];?></td>
-                        <td><?php echo $row['client_email'];?></td>
-                    </tr>
-                <?php endwhile;?>
-            </table>
-        </form>
+                    </a>
+                    <br>
+                     <a href="repairsearch.php">
+                        <span class="nav-item">Search for repairs</span>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                       
+                    </a>
+                    </div>
 
     <?php include './includes/footer.php'; 
  
