@@ -25,4 +25,25 @@ function insert_client($email_address){
           return false;
         }
       }
+      function employee_select( $employee_id ) {
+        $conn = db_connect();
+        $result = pg_execute( $conn, 'employee_select', array( $employee_id ) );
+        if ( pg_num_rows( $result ) == 1 ) {
+          $employee = pg_fetch_assoc( $result, 0 );
+          return $employee;
+        } else {
+          return false;
+        }
+      }
+      function user_authenticate( $employee_id, $password ) {
+        $conn = db_connect();
+        $result = pg_execute( $conn, "employee_select", array( $employee_id ) );
+        $employee = pg_fetch_assoc( $result );
+        // verifys the password has input returns false if not correct password
+        if ( password_verify( $password, $employee[ 'password' ] ) == 1 ) {
+          return true;
+        } else {
+          return false;
+        }
+      }
 ?>

@@ -1,6 +1,13 @@
 <?php include './includes/header.php'; ?> 
 
-<div class="main-content">
+<?php
+
+if(! isset($_SESSION['employee_id'])) 
+{
+	Header("Location: login.php");
+}
+    ?>
+    <div class="main-content">
     <div class="container">
         <h1>Buy Page</h1>
     </div>
@@ -38,4 +45,6 @@
 <button class='btn btn-primary' id='market' style='float: right ;'>Online Market</button>
 </div>
 
-<?php include './includes/footer.php'; ?>
+<?php include './includes/footer.php'; 
+
+?>

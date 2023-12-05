@@ -1,11 +1,14 @@
 <?php
-$title = "WEBD3201 Salespeople";
+
 include "./includes/header.php";
 ?>
 
 <?php
 $message = "";
-
+if(! isset($_SESSION['employee_id'])) 
+{
+	Header("Location: login.php");
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
 	$email_address = "";
@@ -50,19 +53,18 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <h1><b>Client Page</b></h1>
 		<h2 id = "errors"> <?php echo $message; ?></h2>
-        <?php
-        display_form(
-	array(
-		array(
-			"type" => "email",
-			"name" => "client_email",	
-            "value" => $email_address,
-			"label" => "Client Email"
-		),
+        
+ <form  method="post" enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
+ <div class="form-group">
+	 <label for="gametitle">Client Email:</label>
+	 <input class="form-control" name="client_email" id="client_email" placeholder="Enter Client Email" type="email">
 
-	)
-);
-  ?>    
+ </div>
+ 
+
+ <button class="btn btn-primary" type="submit">Save</button>
+</form>
+   
     </div>
 </div>
 

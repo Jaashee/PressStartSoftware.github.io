@@ -1,8 +1,13 @@
 <?php
+ 
+session_start();
 require( "functions.php" );
 require( "constants.php" );
 require( "db.php" );
 header('Content-Type: text/html; charset=utf-8');
+
+
+ 
 ?>
 <!doctype html>
 <html lang="en">
@@ -68,13 +73,26 @@ header('Content-Type: text/html; charset=utf-8');
                 </a>
                 <span class="tooltip">Repairs</span>
             </li>
-            <li>
-                <a href="login.php">
+           
+            
+                <?php 
+                if ( isset( $_SESSION[ 'employee_id' ] ) ) {
+
+               echo '<li><a href="logout.php">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <span class="nav-item">Logout</span>
                 </a>
-                <span class="tooltip">Logout</span>
-            </li>
+                <span class="tooltip">Logout</span></li>';
+                }
+                else{
+                    echo '<li><a href="login.php">
+                    <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                         <span class="nav-item">Login</span>
+                     </a>
+                     <span class="tooltip">Login</span></li>';
+                }
+                ?>
+
         </ul>
     </div>
 </div>

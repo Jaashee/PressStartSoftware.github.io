@@ -1,60 +1,91 @@
-<?php include './includes/header.php'; ?> 
-<?php
-require("./includes/constants.php");
-require("./includes/db.php");
-$message = "";
-?>
+<?php 
 
+include './includes/header.php'; 
+?> 
 <?php
-if($_SERVER['REQUEST_METHOD']=='POST'){
+
+$message = "";
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    $employee_id = 0;
+	$password = "";
   
-    //making php variables into from what the user inputs
-        $employee_id =trim($_POST['inputEmployeeId']);
-        $password=trim($_POST['inputPassword']);
-        //creating time variables to get the current date
-        $today = date("Ymd");
-        $now = date("Y-m-d G:i:s");
-    //opening the txt file and writing the current date
-     
-        //creating a php variable that retrieves the email address and password
-        $sql ="SELECT * FROM employee WHERE employee_id= '".$employee_id."'AND password = '".$password."'";
     
-    $results = pg_query($conn,$sql);
-    $stmt1 = pg_prepare($conn, 'employee_retrieve', 'SELECT * FROM employee WHERE employee_id = $1 and password = $2');
-    $results = pg_execute($conn,'employee_retrieve', array($employee_id, $password));
-    //if email address and password are in the database then go to dashboard if not its incorrect
-    if(pg_num_rows($results))
-    {
-     
-        $employee_id = pg_fetch_result($results, 0, 'employee_id');
-        $password = pg_fetch_result($results, 0, 'password');
-    
-        
-        header("Location:index.php");
-       
-        ob_flush();
+}
+else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	$employee_id = trim($_POST['employee_id']);
+    $password = trim($_POST['password']);
+
+    $value = true;
+    if(!isset($employee_id)||trim($employee_id)==""){
+        $message ="Employee ID is required";
+        $employee_id = "";
+        $valid = false;
+    }
+    if(!isset($password)||trim($password)==""){
+        $message ="Password is required";
+        $password = "";
+        $valid = false;
+    }
+
+
+
+
+
+    $sql = "SELECT * FROM employee WHERE employee_id='$employee_id' AND password='$password'";
+
+    $result = pg_query($conn,$sql);
+
+
+    if(pg_num_rows($result)==1){
+        $row = pg_fetch_assoc($result);
+        if($row['employee_id']===$employee_id && $row['password']===$password){
+            $_SESSION['employee_id'] =  $row['employee_id'];
+            $_SESSION['employee_name'] = $row['first_name'];
+            header("Location: index.php");
+           
+           
+        }
+        else{
+           
+        }
     }
     else{
-        $message = "Employee ID or password are not valid";
+        $message = "Employee ID or Password is not correct";
     }
-   
-   
     
-    }
+}
 ?>
 <div class="main-content">
     <div class="container">
-        <h1>Employee Login</h1>
-        <form class="form-signin" method="POST" action="<?php echo$_SERVER['PHP_SELF'] ?>">
-    <h2><?php echo $message ?></h2>
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmployeeId" class="sr-only">Employee ID</label>
-    <input type="text" id="inputEmployeeId" name="inputEmployeeId" class="form-control" placeholder="Employee ID" required autofocus>
-    <label for="inputPassword"  class="sr-only">Password</label>
-    <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <div>
+        <h1><b>Employee Log In</b></h1>
+        </div>
+        
+        <h2 id = "errors"> <?php echo $message; ?></h2>
+<?php
+
+
+?>
+<div>
+    <?php
+
+?>
+	<h3><?php echo $message; ?></h3>
+<form class="form-signin" action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
+    <h1 class="h3 mb-3 font-weight-normal">Employee Login</h1>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="number" id="employee_id" class="form-control" name="employee_id" value="<?php echo $employee_id; ?>" placeholder="Enter Employee ID" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="password" name="password" value="<?php echo $password; ?>" class="form-control" placeholder="Enter password" required>
+    <button class="btn btn-lg btn-primary btn-block" name="login" type="submit">Sign in</button>
 </form>
-    </div>
 </div>
+        
+    </div>
+
+</div>
+
+
+
 
 <?php include './includes/footer.php'; ?>

@@ -1,5 +1,10 @@
-<?php include './includes/header.php'; ?> 
+<?php include './includes/header.php'; 
 
+
+if(! isset($_SESSION['employee_id'])) 
+{
+	Header("Location: login.php");
+}  ?> 
 <div class="main-content">
     <div class="container">
         <h1>Inventory Page</h1>
@@ -19,4 +24,6 @@
     </div>
 </div>
 
-<?php include './includes/footer.php'; ?>
+<?php include './includes/footer.php';
+   
+
