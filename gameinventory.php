@@ -7,16 +7,16 @@ if(! isset($_SESSION['employee_id']))
 }
 
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
-        $email_address = "";
+        $game_name = "";
         $message = "";
         
     }
     else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $email_address = trim($_POST['email_address']);
+        $game_name = trim($_POST['game_name']);
         
 
 
-        $query = "SELECT * FROM repair where client_email =  '$email_address' ";
+        $query = "SELECT * FROM games where title =  '$game_name' ";
         
     
  
@@ -37,25 +37,25 @@ if(! isset($_SESSION['employee_id']))
         }
     </style>
     
-               <h3>All Repairs</h3>
+               <h3>All Games</h3>
                 <table>
             
             <tr>
-                <th>Repair ID</th>
-                <th>Employee ID</th>
-                <th>Console</th>
-                <th>Repair Date</th>
-                <th>Repair Status</th>
-                <th>Client Email</th>
+                <th>Game ID</th>
+                <th>Game Title</th>
+                <th>Price</th>
+                <th>Condition</th>
+                <th>Platform</th>
+                <th>Sold?</th>
             </tr>
             <?php while($row = pg_fetch_array($search_result)):?>
                 <tr>
-                    <td><?php echo $row['repair_id'];?></td>
-                    <td><?php echo $row['employee_id'];?></td>
-                    <td><?php echo $row['console'];?></td>
-                    <td><?php echo $row['repair_date'];?></td>
-                    <td><?php echo $row['repair_status'];?></td>
-                    <td><?php echo $row['client_email'];?></td>
+                    <td><?php echo $row['game_id'];?></td>
+                    <td><?php echo $row['title'];?></td>
+                    <td><?php echo $row['price'];?></td>
+                    <td><?php echo $row['condition'];?></td>
+                    <td><?php echo $row['platform'];?></td>
+                    <td><?php echo $row['is_sold'];?></td>
                 </tr>
             <?php endwhile;?>
         </table>
@@ -75,11 +75,11 @@ if(! isset($_SESSION['employee_id']))
    <div>     <form method="post" enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
  
  <div class="form-group">
-     <h1>Search Reapair Page</h1>
-     <label for="email_address">Search repair based on client:</label>
-     <input class="form-control" value="<?php $email_address ?>" name="email_address" placeholder="Enter client email" type="email">
+     <h1>Search Game Inventory</h1>
+     <label for="game_title">Search inventory based on game:</label>
+     <input class="form-control" value="<?php $game_name ?>" name="game_title" placeholder="Enter Game Title" type="text">
  
- <button class="btn btn-primary" type="submit">Search Repair</button>
+ <button class="btn btn-primary" type="submit">Search Game</button>
  </form>
 </div>
    

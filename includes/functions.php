@@ -68,6 +68,12 @@ function flashMessage(){
 	  }
 	return $message;
 }
+function filterTable($query)
+      {
+          $conn = db_connect();
+          $filter_Result = pg_query($conn, $query);
+          return $filter_Result;
+      }
 	/*
 	$output = "<form>";
 	foreach($form_inputs as $input)

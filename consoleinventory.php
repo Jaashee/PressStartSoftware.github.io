@@ -7,16 +7,16 @@ if(! isset($_SESSION['employee_id']))
 }
 
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
-        $email_address = "";
+        $name = "";
         $message = "";
         
     }
     else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $email_address = trim($_POST['email_address']);
+        $name = trim($_POST['name']);
         
 
 
-        $query = "SELECT * FROM repair where client_email =  '$email_address' ";
+        $query = "SELECT * FROM console where name =  '$name' ";
         
     
  
@@ -37,25 +37,21 @@ if(! isset($_SESSION['employee_id']))
         }
     </style>
     
-               <h3>All Repairs</h3>
+               <h3>All Consoles</h3>
                 <table>
             
             <tr>
-                <th>Repair ID</th>
-                <th>Employee ID</th>
-                <th>Console</th>
-                <th>Repair Date</th>
-                <th>Repair Status</th>
-                <th>Client Email</th>
+                <th>Console ID</th>
+                <th>Console Name</th>
+                <th>Price</th>
+                <th>Sold?</th>
             </tr>
             <?php while($row = pg_fetch_array($search_result)):?>
                 <tr>
-                    <td><?php echo $row['repair_id'];?></td>
-                    <td><?php echo $row['employee_id'];?></td>
-                    <td><?php echo $row['console'];?></td>
-                    <td><?php echo $row['repair_date'];?></td>
-                    <td><?php echo $row['repair_status'];?></td>
-                    <td><?php echo $row['client_email'];?></td>
+                    <td><?php echo $row['console_id'];?></td>
+                    <td><?php echo $row['name'];?></td>
+                    <td><?php echo $row['price'];?></td>
+                    <td><?php echo $row['is_sold'];?></td>
                 </tr>
             <?php endwhile;?>
         </table>
@@ -75,11 +71,11 @@ if(! isset($_SESSION['employee_id']))
    <div>     <form method="post" enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
  
  <div class="form-group">
-     <h1>Search Reapair Page</h1>
-     <label for="email_address">Search repair based on client:</label>
-     <input class="form-control" value="<?php $email_address ?>" name="email_address" placeholder="Enter client email" type="email">
+     <h1>Search Console Inventory</h1>
+     <label for="console_name">Search inventory based on console:</label>
+     <input class="form-control" value="<?php $console_name ?>" name="console_name" placeholder="Enter Console Name" type="text">
  
- <button class="btn btn-primary" type="submit">Search Repair</button>
+ <button class="btn btn-primary" type="submit">Search Console</button>
  </form>
 </div>
    
