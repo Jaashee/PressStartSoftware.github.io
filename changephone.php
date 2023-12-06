@@ -5,7 +5,7 @@ if(! isset($_SESSION['employee_id']))
     header("Location: login.php");
 }
  if ($_SERVER["REQUEST_METHOD"] == "GET") {
-       $employee_id = "";
+       $employee_id = 0;
        $phonenumber = "";
         $message = "";
         

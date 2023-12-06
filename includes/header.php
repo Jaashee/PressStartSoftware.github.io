@@ -16,7 +16,7 @@ header('Content-Type: text/html; charset=utf-8');
     <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
           name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
-    <title>PressStart - Dashboard</title>
+    <title>Press Start - Application</title>
     <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="./content/styles.css" rel="stylesheet"/>
@@ -34,9 +34,9 @@ header('Content-Type: text/html; charset=utf-8');
             <li>
                 <a href="index.php">
                     <i class="fa-brands fa-dashcube"></i>
-                    <span class="nav-item">Dashboard</span>
+                    <span class="nav-item">Employee</span>
                 </a>
-                <span class="tooltip">Dashboard</span>
+                <span class="tooltip">Employee</span>
             </li>
             <li>
                 <a href="inventory.php">

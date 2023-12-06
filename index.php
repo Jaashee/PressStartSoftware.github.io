@@ -1,7 +1,7 @@
 <?php 
 include './includes/header.php'; 
 $message = "";
-
+$method = 1;
 
 if(! isset($_SESSION['employee_id'])) {
     Header("Location: login.php");
@@ -108,8 +108,8 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
 	}
 	if(!($manager == 'M'|| $manager == 'E')){
-		$message ="Type of employee can only be 'M' or 'E'";
-		$manager = "Type of employee can only be 'M' or 'E'";
+		$message ="Status of employee can only be 'M' or 'E'";
+		$manager = "Status of employee can only be 'M' or 'E'";
 		$valid = false;
 	}
 
@@ -119,6 +119,8 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$message = "A employee already has that phone number";
 		$valid = false;
 	}
+
+	
 	
 	
 }else{
@@ -131,7 +133,10 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
+if(isset($password)){
+	$enc_password = password_hash($password,$method );
 
+}
 
 
 
@@ -139,7 +144,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
 	
 		$sql = "INSERT INTO employee (first_name,last_name,password,phone_number,address,type)";
-        $sql .= "VALUES ('$first_name','$last_name','$password','$phonenumber','$address','$manager')";
+        $sql .= "VALUES ('$first_name','$last_name','$enc_password','$phonenumber','$address','$manager')";
 
 	if ($valid) {
 		if (pg_query($conn, $sql)) {
@@ -192,22 +197,57 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
                        
                     </a>
 					<br>
-                     <a href="repairsearch.php">
+                     <a href="employeestatus.php">
                         <span class="nav-item">Update Employee Status</span>
 						<i class="fa-solid fa-user-tie"></i>
                        
                     </a>
 					<br>
-                     <a href="repairsearch.php">
+                     <a href="deleteemployee.php">
                         <span class="nav-item">Delete Employee Account</span>
 						<i class="fa-solid fa-trash"></i>
                        
                     </a>
                     </div>
+					<?php
+    $ongoingqeury = "select * from employee";
+    $ongoingresult = pg_query($conn,$ongoingqeury);
+    ?>
+   
+      
+                    
+    
+    
+
+        <h2>Employees</h2>
+         <table class="table table-bordered text-center">
+        <tr>
+            <td>Employee ID</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Status</td>
+        </tr>
+        <tr>
+       <?php
+    
+        while($row = pg_fetch_assoc($ongoingresult))
+        {
+        ?>
+        <td><?php echo $row['employee_id']?></td>
+        <td><?php echo $row['first_name']?></td>
+        <td><?php echo $row['last_name']?></td>
+		<td><?php echo $row['type']?></td>
+        </tr>
+        <?php
+        } 
+       ?>
+        
+    </table>
+
 		</div>
 		<div>
 		<h2 id = "errors"> <?php echo $message; ?></h2>
-		</div>
+		<
 <div>
 	<h2>Register Employee</h2>
 <form  method="post" enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
@@ -243,7 +283,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
  </div>
  <div class="form-group">
- <label for="manager">Type of employee</label>
+ <label for="manager">Status of employee</label>
  	<input class="form-control" value="<?php $is_manager?>" name="manager" placeholder="'M' or 'E'" type="text">
        
     </div>

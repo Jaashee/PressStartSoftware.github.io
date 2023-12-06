@@ -3,7 +3,7 @@
 include './includes/header.php'; 
 ?> 
 <?php
-
+$method = 1;
 $message = "";
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $employee_id = 0;
@@ -27,18 +27,27 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $valid = false;
     }
 
+    
+       
+  
+    
+    
 
 
-
-
-    $sql = "SELECT * FROM employee WHERE employee_id='$employee_id' AND password='$password'";
+    $sql = "SELECT * FROM employee WHERE employee_id='$employee_id'";
 
     $result = pg_query($conn,$sql);
 
 
     if(pg_num_rows($result)==1){
+
+
         $row = pg_fetch_assoc($result);
-        if($row['employee_id']===$employee_id && $row['password']===$password){
+        $hashed = $row['password'];
+        
+        if(password_verify($password,$hashed)){
+
+            if($row['employee_id']===$employee_id && $row['password']===$hashed){
             $_SESSION['employee_id'] =  $row['employee_id'];
             $_SESSION['employee_name'] = $row['first_name'];
             $_SESSION['typeemployee'] = $row['type'];
@@ -46,15 +55,21 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
            
            
         }
-        else{
-           
+            
+
         }
+    
+    
+      
     }
     else{
         $message = "Employee ID or Password is not correct";
     }
-    
+
 }
+
+    
+
 ?>
 <div class="main-content">
     <div class="container">
@@ -71,7 +86,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php
 
 ?>
-	<h3><?php echo $message; ?></h3>
+	
 <form class="form-signin" action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
     <h1 class="h3 mb-3 font-weight-normal">Employee Login</h1>
     <label for="inputEmail" class="sr-only">Email address</label>

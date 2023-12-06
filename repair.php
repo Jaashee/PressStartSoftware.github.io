@@ -71,17 +71,24 @@ if(! isset($_SESSION['employee_id']))
             $valid = false;
         }
        }
+       $query3 = pg_query($conn,"SELECT * FROM  client WHERE client_email= '$email_address'");
+       if(! pg_num_rows($query3)>0)
+       {
+         
+           $message = "Client Email entered does not exist";
+           $valid = false;
+       }
         
     
         $date = date("Y-m-d");
         
         $sql = "INSERT INTO repair (employee_id,console,repair_date,repair_status,client_email)";
         $sql .= "VALUES ('$employee_id','$console','$date','ongoing','$email_address')";
-        $sql2 = "INSERT INTO transactions (price,repair_date,transaction_type)";
+        $sql2 = "INSERT INTO transactions (price,date,transaction_type)";
         $sql2 .= "VALUES ('$price','$date','+')"; 
         $sql3 = "INSERT INTO product (product_id,price,name_of_product,product_type)";
         $sql3 .= "VALUES ('$prodid','$price','$console','console')";
-        $sql4 = "INSERT INTO invoice_item (product_id,item_qty,order_date)";
+        $sql4 = "INSERT INTO invoice_item (product_id,order_date)";
         $sql4 .= "VALUES ('$prodid','1','$date')";
      
     

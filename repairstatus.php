@@ -90,7 +90,7 @@ if(! isset($_SESSION['employee_id']))
  </div>
  <div class="form-group">
 	 <label for="gametitle">Repair Status:</label>
-	 <input class="form-control" name="repair_status" value="<?php $repair_status ?>"  placeholder="Enter repair status" type="text">
+	 <input class="form-control" name="repair_status" value="<?php $repair_status ?>"  placeholder="'ongoing' or 'complete'" type="text">
 
  </div>
  
