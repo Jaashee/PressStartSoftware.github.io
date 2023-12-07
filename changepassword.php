@@ -1,5 +1,6 @@
 <?php include './includes/header.php'; ?> 
 <?php
+$method = 1;
 if(! isset($_SESSION['employee_id'])) 
 {
     header("Location: login.php");
@@ -41,13 +42,13 @@ if(! isset($_SESSION['employee_id']))
         
         }
     
-    
-        
+        $enc_password = password_hash($password,$method );
+
         $sql = "UPDATE employee ";
-        $sql .= "SET password = ('$password')";
+        $sql .= "SET password = ('$enc_password')";
         $sql .= "WHERE employee_id = $employee";
     
-     
+        
     
         if ($valid) {
             if (pg_query($conn, $sql)) {

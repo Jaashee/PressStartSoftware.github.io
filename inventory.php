@@ -9,9 +9,23 @@ if(! isset($_SESSION['employee_id']))
     <div class="container">
         <h1>Inventory Page</h1>
         <div>
-            <h2 href="gameinventory.php">Game Inventory</h2>
-            <h2 href="consoleinvenory.php">Console Inventory</h2>
-            <h2 href="accessoryinventory.php">Accessories Inventory</h2>
+        <a href="gameinventory.php">
+                        <span class="nav-item">Game Inventory</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                       
+                    </a>
+                    <br>
+                     <a href="consoleinventory.php">
+                        <span class="nav-item">Console Inventory</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                       
+                    </a>
+					<br>
+                     <a href="accessoryinventory.php">
+                        <span class="nav-item">Accessories inventory</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                       
+                    </a>
         
         </div>
         

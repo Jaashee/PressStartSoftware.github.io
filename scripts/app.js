@@ -1,5 +1,7 @@
 (function () {
 
+
+    
     document.addEventListener("DOMContentLoaded", function() {
         var btn = document.querySelector('#btn');
         var sidebar = document.querySelector('.sidebar');
@@ -14,3 +16,12 @@
 
 
 })();
+
+
+
+let marketButton =document.getElementById('market');
+
+
+marketButton.addEventListener('click', () =>{
+window.open('https://www.pricecharting.com/category/video-games', '_blank')
+});

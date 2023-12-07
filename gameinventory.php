@@ -5,7 +5,7 @@ if(! isset($_SESSION['employee_id']))
 {
 	Header("Location: login.php");
 }
-
+$game_name = "";
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $game_name = "";
         $message = "";
@@ -77,11 +77,17 @@ if(! isset($_SESSION['employee_id']))
  <div class="form-group">
      <h1>Search Game Inventory</h1>
      <label for="game_title">Search inventory based on game:</label>
-     <input class="form-control" value="<?php $game_name ?>" name="game_title" placeholder="Enter Game Title" type="text">
+     <input class="form-control" value="<?php $game_name ?>" name="game_name" placeholder="Enter Game Title" type="text">
  
  <button class="btn btn-primary" type="submit">Search Game</button>
  </form>
 </div>
+<a href="repair.php">
+            <i class="fa-solid fa-arrow-left"></i>
+                        <span class="nav-item">Back to Repair Page</span>
+                        
+                       
+                    </a>
    
 
     </div>

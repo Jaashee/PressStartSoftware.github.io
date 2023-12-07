@@ -20,6 +20,7 @@ header('Content-Type: text/html; charset=utf-8');
     <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="./content/styles.css" rel="stylesheet"/>
+   
 </head>
 <body>
 <div class="sidebar">

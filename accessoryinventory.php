@@ -73,7 +73,7 @@ if(! isset($_SESSION['employee_id']))
  <div class="form-group">
      <h1>Search Accessory Inventory</h1>
      <label for="accessory_name">Search inventory based on accessory:</label>
-     <input class="form-control" value="<?php $accessory_name ?>" name="accessory_name" placeholder="Enter Accessory Name" type="text">
+     <input class="form-control" value="<?php $accessory_name ?>" name="name" placeholder="Enter Accessory Name" type="text">
  
  <button class="btn btn-primary" type="submit">Search Accessory</button>
  </form>

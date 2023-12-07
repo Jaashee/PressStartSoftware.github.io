@@ -5,14 +5,15 @@ if(! isset($_SESSION['employee_id']))
 {
 	Header("Location: login.php");
 }
-
+$qty = 1;
+$message = "";
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $employee_id = 0;
         $email_address = "";
         $console = "";
-        $price = "";
+        $price = 0;
         $prodid = 0;
-        $message = "";
+       
         
     }
     else if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -32,7 +33,7 @@ if(! isset($_SESSION['employee_id']))
             $message = "Client email not formatted correctly";
         }
       
-        if(!isset($price)||trim($price)==""){
+        if(!isset($price)){
             $message ="The price of repair is required";
             $price = "";
             $valid = false;
@@ -82,14 +83,14 @@ if(! isset($_SESSION['employee_id']))
     
         $date = date("Y-m-d");
         
-        $sql = "INSERT INTO repair (employee_id,console,repair_date,repair_status,client_email)";
-        $sql .= "VALUES ('$employee_id','$console','$date','ongoing','$email_address')";
-        $sql2 = "INSERT INTO transactions (price,date,transaction_type)";
-        $sql2 .= "VALUES ('$price','$date','+')"; 
-        $sql3 = "INSERT INTO product (product_id,price,name_of_product,product_type)";
-        $sql3 .= "VALUES ('$prodid','$price','$console','console')";
-        $sql4 = "INSERT INTO invoice_item (product_id,order_date)";
-        $sql4 .= "VALUES ('$prodid','1','$date')";
+        $sql = "INSERT INTO repair (employee_id,console,repair_date,repair_status,client_email,repair_price)";
+        $sql .= "VALUES ('$employee_id','$console','$date','ongoing','$email_address','$price')";
+        $sql2 = "INSERT INTO transactions (date,transaction_type,price)";
+        $sql2 .= "VALUES ('$date','+','$price')"; 
+        $sql3 = "INSERT INTO product (product_id,name_of_product,product_type,price)";
+        $sql3 .= "VALUES ('$prodid','$console','console','$price')";
+        $sql4 = "INSERT INTO invoice_item (product_id,order_date,item_qty)";
+        $sql4 .= "VALUES ('$prodid','$date','$qty')";
      
     
         if ($valid) {
@@ -132,7 +133,7 @@ if(! isset($_SESSION['employee_id']))
     </div>
     <div class="form-group">
         <label for="price">Price:</label>
-        <input class="form-control" value="<?php $employee_id ?>" name="price" placeholder="Enter price of repair" type="text">
+        <input class="form-control" value="<?php $employee_id ?>" name="price" placeholder="Enter price of repair" type="number" step="any">
     </div>
     <div class="form-group">
         <label for="productid">Product ID:</label>
@@ -164,7 +165,6 @@ if(! isset($_SESSION['employee_id']))
             <td>Employee ID</td>
             <td>Console Name</td>
             <td>Repair Start Date</td>
-            <td>Repair Status</td>
             <td>Client Email</td>
         </tr>
         <tr>
@@ -177,7 +177,6 @@ if(! isset($_SESSION['employee_id']))
         <td><?php echo $row['employee_id']?></td>
         <td><?php echo $row['console']?></td>
         <td><?php echo $row['repair_date']?></td>
-        <td><?php echo $row['repair_status']?></td>
         <td><?php echo $row['client_email']?></td>
         </tr>
         <?php
@@ -187,8 +186,8 @@ if(! isset($_SESSION['employee_id']))
     </table>
 </div>
         <div>
-                <a href="repairstatus.php">
-                        <span class="nav-item">Change Repair Status</span>
+                <a href="deleterepair.php">
+                        <span class="nav-item">Delete Repair</span>
                         <i class="fa-solid fa-arrow-right"></i>
                        
                     </a>

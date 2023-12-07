@@ -12,7 +12,7 @@ $message = "";
         
     }
     else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $employee = trim($_POST['employee_id']);
+        $repair = trim($_POST['repair_id']);
         $confirm = trim($_POST['confirm']);
        
         
@@ -24,17 +24,17 @@ $message = "";
         
         $valid = true;
     
-        if(!is_numeric($employee)){
-            $message = "Employee ID must be a number";
+        if(!is_numeric($repair)){
+            $message = "Repair ID must be a number";
             $prodid = "";
             $valid = false;
             
             }
             else{
-         $query = pg_query($conn,"SELECT * FROM  employee WHERE employee_id= '$employee'");
+         $query = pg_query($conn,"SELECT * FROM  repair WHERE repair_id= '$repair'");
 	         if(! pg_num_rows($query)>0)
 	    {
-		$message = "Employee ID does not exist";
+		$message = "Repair ID does not exist";
 		$valid = false;
 	    }
         }
@@ -44,8 +44,8 @@ $message = "";
         
         }
         
-        if(!isset($employee)||trim($employee)==""){
-            $message ="Employee ID is required";
+        if(!isset($repair)||trim($repair)==""){
+            $message ="Repair ID is required";
             $valid = false;
         
         }
@@ -57,15 +57,15 @@ $message = "";
         }
     
         
-        $sql = "DELETE FROM employee";
-        $sql .= " WHERE employee_id = $employee";
+        $sql = "DELETE FROM repair";
+        $sql .= " WHERE repair_id = $repair";
     
      
     
         if ($valid) {
             if (pg_query($conn, $sql)) {
              
-                $message = "Account successfully deleted!";
+                $message = "Repair successfully deleted!";
                 
             } 
         }
@@ -75,10 +75,10 @@ $message = "";
     <div class="main-content">
         <div class="container">
             <div>
-            <h1><b>Delete Employee Account</b></h1>
-            <a href="index.php">
+            <h1><b>Delete A Repair</b></h1>
+            <a href="repair.php">
             <i class="fa-solid fa-arrow-left"></i>
-                        <span class="nav-item">Back to Employee Page</span>
+                        <span class="nav-item">Back to Repair Page</span>
                         
                        
                     </a>
@@ -93,12 +93,12 @@ $message = "";
 
  <div class="form-group">
 	 <label for="employee_id">Employe ID:</label>
-	 <input class="form-control" name="employee_id" placeholder="Enter employee ID" type="number">
+	 <input class="form-control" name="repair_id" placeholder="Enter Repair ID" type="number">
 
  </div>
 
  <div class="form-group">
-	 <label for="confirm">Type 'CONFIRM' to delete account:</label>
+	 <label for="confirm">Type 'CONFIRM' to delete repair:</label>
 	 <input class="form-control" name="confirm" placeholder="CONFIRM" type="text">
 
  </div>

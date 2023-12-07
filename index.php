@@ -247,7 +247,7 @@ if(isset($password)){
 		</div>
 		<div>
 		<h2 id = "errors"> <?php echo $message; ?></h2>
-		<
+		
 <div>
 	<h2>Register Employee</h2>
 <form  method="post" enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
