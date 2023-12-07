@@ -326,4 +326,32 @@ table th, table td {
     text-align: left;
 }
 
+.inventory-links {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.inventory-page .inventory-links{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* Adjust the height as needed */
+    margin-top: 20px; /* Adds some space at the top */
+}
+
+.inventory-page .inventory-link {
+    margin: 0 15px; /* Space between links */
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    background-color: #2C3E50; /* A deep blue color */
+    color: #FFFFFF; /* White text color for contrast */
+}
+.inventory-page.inventory-link:hover {
+    background-color: #34495E; /* A slightly lighter blue for hover effect */
+}
+
+
 
