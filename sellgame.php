@@ -13,19 +13,16 @@ if(! isset($_SESSION['employee_id']))
 
 $qty = 1;
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-	$title = "";
-	$platform =  "";
+	$gameid = 0;
 	$price = 0;
-	$condition = "";
     $prodid = "";
 	
 
 }
 else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$title = trim($_POST['title']);
-	$platform = trim($_POST['platform']);
+	$gameid = trim($_POST['gameID']);
 	$price = trim($_POST['price']);
-	$condition = trim($_POST['condition']);
+    $type = trim($_POST['type']);
     $prodid= trim($_POST['productid']);
 
 
@@ -34,13 +31,13 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
 
 	
-	if(!isset($title)||trim($title)==""){
-		$message ="Title of game is required";
+	if(!isset($gameID)||trim($gameID)==""){
+		$message ="Game ID is required";
 		
 		$valid = false;
 	}
-	if(!isset($platform)||trim($platform)==""){
-		$message ="Platform of game is required";
+	if(!isset($type)||trim($type)==""){
+		$message ="Type of sell is required";
 	
 		$valid = false;
 	}
@@ -49,30 +46,22 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
 		$valid = false;
 	}
-	if(!isset($condition)||trim($condition)==""){
-		$message ="Condition is required";
-		
+	if(!isset($prodid)){
+		$message ="Product ID is required";
+	
 		$valid = false;
 	}
-    if(!isset($condition)){
-		$message ="Condition is required";
-		
-		$valid = false;
-	}
-    if(!is_numeric($price)){
-        $message = "Game price must be numeric";
-        $valid = false;
-        
-    }
     if(!is_numeric($prodid)){
         $message = "Product ID must be numeric";
         $valid = false;
         
     }
-    if(!($condition == 'Okay'|| $condition == 'Good'|| $condition == 'Perfect')){
-		$message ="Condition can only be 'Okay', 'Good', 'Perfect'";
-		$valid = false;
-	}
+    if(!is_numeric($gameid)){
+        $message = "Game ID must be numeric";
+        $valid = false;
+        
+    }
+  
 
     $math = 0;
     $conditionmath = 0;

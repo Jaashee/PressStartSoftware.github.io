@@ -8,7 +8,7 @@
     ?>
   <div class="main-content">
         <div class="container">
-  <a href="changeaddress.php">
+  <a href="gamesell.php">
                         <span class="nav-item">Game Sell</span>
 						<i class="fa-solid fa-house"></i>
                        
