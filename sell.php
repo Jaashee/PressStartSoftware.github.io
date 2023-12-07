@@ -1,4 +1,4 @@
-<?php include './includes/header.php'; ?> 
+<?php include './includes/header.php'; ?>
 <?php
  if(! isset($_SESSION['employee_id'])) 
  {
@@ -8,7 +8,7 @@
     ?>
   <div class="main-content">
         <div class="container">
-  <a href="gamesell.php">
+  <a href="changeaddress.php">
                         <span class="nav-item">Game Sell</span>
 						<i class="fa-solid fa-house"></i>
                        
@@ -27,8 +27,8 @@
                     </a>
   </div>
 </div>
-    
-    <?php include './includes/footer.php'; 
- 
+
+<?php include './includes/footer.php';
+
 ?>
  

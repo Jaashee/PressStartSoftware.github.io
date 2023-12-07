@@ -20,7 +20,9 @@ header('Content-Type: text/html; charset=utf-8');
     <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="./content/styles.css" rel="stylesheet"/>
-   
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Roboto:400,700&display=swap" rel="stylesheet">
+
+
 </head>
 <body>
 <div class="sidebar">
@@ -34,42 +36,42 @@ header('Content-Type: text/html; charset=utf-8');
         <ul>
             <li>
                 <a href="index.php">
-                    <i class="fa-brands fa-dashcube"></i>
+                    <i class="fas fa-user"></i>
                     <span class="nav-item">Employee</span>
                 </a>
                 <span class="tooltip">Employee</span>
             </li>
             <li>
                 <a href="inventory.php">
-                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <i class="fas fa-boxes"></i>
                     <span class="nav-item">Inventory</span>
                 </a>
                 <span class="tooltip">Inventory</span>
             </li>
             <li>
                 <a href="client.php">
-                  <i class="fa-solid fa-user"></i>
+                    <i class="fas fa-users"></i>
                     <span class="nav-item">Client</span>
                 </a>
                 <span class="tooltip">Client</span>
             </li>
             <li>
                 <a href="buy.php">
-                    <i class="fa-solid fa-cart-shopping"></i>
+                    <i class="fas fa-shopping-cart"></i>
                     <span class="nav-item">Buy</span>
                 </a>
                 <span class="tooltip">Buy</span>
             </li>
             <li>
                 <a href="sell.php">
-                    <i class="fa-solid fa-money-bill"></i>
+                    <i class="fas fa-money-bill-wave"></i>
                     <span class="nav-item">Sell/Returns</span>
                 </a>
                 <span class="tooltip">Sell/Returns</span>
             </li>
             <li>
                 <a href="repair.php">
-                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    <i class="fas fa-tools"></i>
                     <span class="nav-item">Repairs</span>
                 </a>
                 <span class="tooltip">Repairs</span>
@@ -80,14 +82,14 @@ header('Content-Type: text/html; charset=utf-8');
                 if ( isset( $_SESSION[ 'employee_id' ] ) ) {
 
                echo '<li><a href="logout.php">
-                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <i class="fas fa-sign-in-alt"></i>
                     <span class="nav-item">Logout</span>
                 </a>
                 <span class="tooltip">Logout</span></li>';
                 }
                 else{
                     echo '<li><a href="login.php">
-                    <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                    <i class="fas fa-sign-in-alt"></i>
                          <span class="nav-item">Login</span>
                      </a>
                      <span class="tooltip">Login</span></li>';
